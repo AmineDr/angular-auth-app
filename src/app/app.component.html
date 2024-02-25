@@ -1,0 +1,49 @@
+<div class="container">
+  <router-outlet>
+    <nav class="navbar navbar-expand-lg align-items-center">
+      <a class="navbar-brand my-0" routerLink="">{{ title }}</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mt-2">
+          <li class="nav-item nav-pill active">
+            <a class="nav-link" routerLink="">Home</a>
+          </li>
+          <li class="nav-item">
+            <div *ngIf="userInfo; then connected; else notConnected"></div>
+
+            <ng-template #connected>
+              <div class="d-flex align-items-center">
+                <span class="text-success">Connected as {{ userInfo?.firstname }}</span>
+              <a class="nav-link" (click)="logOut()" style="cursor: pointer;" routerLinkActive="*"
+                >Disconnect</a
+              >
+              </div>
+            </ng-template>
+            <ng-template #notConnected>
+              <a class="nav-link" routerLink="login" routerLinkActive="*"
+                >Login</a>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div>
+        
+ 
+        <button class="btn btn-sm btn-secondary" (click)="toggleColorMode()">
+          Toggle color mode
+        </button>
+      </div>
+    </nav>
+    <hr class="mb-5">
+  </router-outlet>
+</div>
